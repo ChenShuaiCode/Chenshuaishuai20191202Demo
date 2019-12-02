@@ -15,6 +15,7 @@ public class NewsModle implements INewsContract.imodle {
             public void getjson(String json) {
                 Bean bean = new Gson().fromJson(json, Bean.class);
                 modleCallBack.success(bean);
+
             }
         });
 

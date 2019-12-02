@@ -1,5 +1,6 @@
 package com.bawei.chenshuaishuai20191202.view.fragment;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -10,12 +11,17 @@ import com.bawei.chenshuaishuai20191202.contract.INewsContract;
 import com.bawei.chenshuaishuai20191202.modle.entity.Bean;
 import com.bawei.chenshuaishuai20191202.presenter.NewsPresenter;
 import com.bawei.chenshuaishuai20191202.utils.NetUtils;
+import com.bawei.chenshuaishuai20191202.view.adapter.Adapter;
+
+import java.util.List;
 
 public class NewsFragment extends BaseFragment implements INewsContract.iview {
     private NewsPresenter newsPresenter;
+    private ListView listView;
 
     @Override
     protected void initview(View inflate) {
+        listView=inflate.findViewById(R.id.listview);
 
     }
     @Override
@@ -33,6 +39,8 @@ public class NewsFragment extends BaseFragment implements INewsContract.iview {
     @Override
     public void success(Bean bean) {
         Toast.makeText(getActivity(),bean.getMessage(),Toast.LENGTH_SHORT).show();
+        listView.setAdapter(new Adapter((List<Bean.ResultBean>) bean));
+
 
     }
 
